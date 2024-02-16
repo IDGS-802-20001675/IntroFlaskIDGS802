@@ -10,21 +10,24 @@ def hola():
 def index():
     return render_template("index.html")
 
-@app.route("/alumnos",methods=["GET", "POST"])
+@app.route("/alumnos", methods=["GET", "POST"])
 def alumnos():
+    nom = ''
+    email = ''
     alum_form = forms.UserForm(request.form)
-    if request.method == 'POST':
-      nom=alum_form.nombre.data
-      apa=alum_form.apaterno.data
-      correo=alum_form.email.data
-      
-      print("nombre:{}".format(nom))
-      print("apaterno:{}".format(apa))
-      print("correo:{}".format(correo))
-      
-    return render_template("alumnos.html", form=alum_form, nom=alum_form.nombre.data,
-      apa=alum_form.apaterno.data,
-      correo=alum_form.email.data) 
+    if request.method == 'POST' and alum_form.validate():
+        print('hola')
+        nom = alum_form.nombre.data
+        apa = alum_form.apaterno.data
+        ama = alum_form.amaterno.data
+        email = alum_form.email.data
+        
+        print("nombre:{}".format(nom))
+        print("apaterno:{}".format(apa))
+        print("amaterno:{}".format(ama))
+        print("correo: {}".format(email)) 
+
+    return render_template("alumnos.html", form=alum_form, nom=nom, email=email)
 
 @app.route("/maestros")
 def maestros():
