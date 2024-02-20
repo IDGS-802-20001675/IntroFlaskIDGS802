@@ -19,3 +19,5 @@ class UserForm(Form):
         validators.Email(message='Ingrese un correo valido')
     ])
     #radios=RadioField('Curso',choices=[('1','1'),('2','2'),('3','3')])
+    
+    
